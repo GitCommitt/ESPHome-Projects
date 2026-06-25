@@ -32,3 +32,30 @@ Connect one pin of each button to the designated GPIO pin on the ESP32-S3, and c
 | **Macropad Button 3** | GPIO 10 | Input Pin |
 | **Macropad Button 4** | GPIO 11 | Input Pin |
 | **All Buttons (Common)** | GND | Ground Connected in a line |
+
+---
+
+### Setting Up and Linking Automations in Home Assistant
+
+To ensure an action is actually executed when you press a button, you need to create an automation in Home Assistant and link it to your button's `binary_sensor` entity.
+
+#### Step-by-Step Linking via the Home Assistant UI:
+
+1. **Open Automations:**
+   Go to **Settings** > **Automations & Scenes** > **Automations**.
+   
+2. **Start a New Automation:**
+   Click **Create Automation** in the bottom right corner and select **Create new automation**.
+
+3. **Set the Button as the Trigger (When):**
+   * Click **Add Trigger** and select **State**.
+   * Under **Entity**, select the sensor of the button you want to link (for example, `binary_sensor.macropad_button_1`).
+   * Enter `on` in the **To** field. This ensures that the automation triggers at the exact moment you physically press the button.
+
+4. **Link the Action (Then do):**
+   * Under **Actions**, click **Add Action**.
+   * Choose your desired action. For example, if you want to toggle a light, select **Perform Action** (or *Call service*) and choose `light.toggle`.
+   * Select the specific target, such as the light in your room.
+
+5. **Save:**
+   Click **Save** in the bottom right corner and give your automation a recognizable name, like *"Macropad Button 1 - Toggle Desk Light"*.
