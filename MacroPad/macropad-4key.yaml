@@ -1,0 +1,55 @@
+esphome:
+  name: macropad-4key
+  friendly_name: CMacropad
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: arduino
+  variant: esp32s3
+
+logger:
+  hardware_uart: USB_SERIAL_JTAG
+
+api:
+  encryption:
+    key: ""
+
+ota:
+  - platform: esphome
+    password: "
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+captive_portal:
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO8
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Macropad Button 1"
+
+  - platform: gpio
+    pin:
+      number: GPIO9
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Macropad Button 2"
+
+  - platform: gpio
+    pin:
+      number: GPIO10
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Macropad Button 3"
+
+  - platform: gpio
+    pin:
+      number: GPIO11
+      mode: INPUT_PULLUP
+      inverted: true
+    name: "Macropad Button 4"
